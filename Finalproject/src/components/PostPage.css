@@ -1,67 +1,120 @@
-.post-page {
-  padding: 20px;
-  font-family: Arial, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
+/* PostPage.css */
+
+body {
+  background-color: #0d0d0d;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-.post-page button {
-  margin: 5px;
-  padding: 10px 15px;
-  background-color: #007bff;
+.post-page {
+  width: 80vw;
+  margin: 40px auto;
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(180, 120, 255, 0.2);
+}
+
+.post-title {
+  font-size: 2rem;
+  color: #d1aaff;
+  margin-bottom: 20px;
+}
+
+.post-image {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #cccccc;
+  margin-bottom: 30px;
+}
+
+.post-actions {
+  margin-bottom: 20px;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.upvotes {
+  font-weight: bold;
+  color: #b288ff;
+}
+
+button {
+  background-color: #7c4dff;
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 10px 16px;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
-.post-page button:hover {
-  background-color: #0056b3;
+button:hover {
+  background-color: #9e68ff;
 }
 
-.post-page h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
+.back-button {
+  background-color: #333;
+  margin-bottom: 20px;
 }
 
-.post-page img {
-  max-width: 100%;
-  height: auto;
-  margin: 10px 0;
-  border-radius: 10px;
+.back-button:hover {
+  background-color: #555;
 }
 
-.post-page p {
-  font-size: 1rem;
-  margin: 10px 0;
+.comment-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
 }
 
-.post-page form {
-  margin-top: 20px;
-}
-
-.post-page form input {
-  width: calc(100% - 100px);
+.comment-form input {
+  flex: 1;
   padding: 10px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background-color: #1e1e1e;
+  color: #eee;
 }
 
-.post-page form button {
-  padding: 10px 20px;
+.comment-button {
+  background-color: #512da8;
 }
 
-.post-page ul {
-  list-style-type: none;
+.comment-button:hover {
+  background-color: #673ab7;
+}
+
+.delete-button {
+  background-color: #b00020;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.comments-list {
+  list-style: none;
   padding: 0;
+  border-top: 1px solid #333;
   margin-top: 20px;
 }
 
-.post-page ul li {
-  background-color: #f9f9f9;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
+.comment-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #333;
+  color: #ccc;
 }

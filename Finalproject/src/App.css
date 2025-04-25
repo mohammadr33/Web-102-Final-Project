@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  color: #333;
+  background-color: #121212; /* Dark background */
+  color: #e0e0e0; /* Light text for contrast */
   line-height: 1.6;
 }
 
@@ -11,16 +11,47 @@ body {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  padding-top: 5rem; /* Add padding to account for fixed navbar */
 }
 
-/* Header */
-header {
-  background-color: #007bff;
-  color: white;
-  padding: 1rem 0;
-  text-align: center;
+/* Navbar */
+.navbar {
+  position: fixed; /* Fixed at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1f1f1f; /* Darker navbar background */
+  color: #e0e0e0;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  z-index: 1000;
+}
+
+.navbar .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  text-decoration: none;
+  color: #e0e0e0;
+}
+
+.navbar .nav-links {
+  display: flex;
+  gap: 1rem; /* Adjust spacing between links */
+}
+
+.navbar .nav-links a {
+  margin-left: 0.5rem; /* Reduced margin to move links closer to the left */
+  text-decoration: none;
+  color: #e0e0e0;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: #007bff; /* Highlight on hover */
 }
 
 /* Buttons */
@@ -40,7 +71,7 @@ button:hover {
 }
 
 button:disabled {
-  background-color: #ccc;
+  background-color: #333;
   cursor: not-allowed;
 }
 
@@ -57,54 +88,74 @@ form textarea,
 form select {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #333;
   border-radius: 5px;
   font-size: 1rem;
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: #888;
 }
 
 form button {
   align-self: flex-start;
 }
 
-/* Post List */
-ul {
-  list-style: none;
+/* Home Page */
+.home-page {
   padding: 0;
 }
 
-ul li {
-  background: white;
+.thread-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.thread-item {
+  background: #1f1f1f;
   margin: 10px 0;
-  padding: 15px;
+  padding: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-ul li:hover {
+.thread-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
-ul li h2 {
+.thread-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.thread-link h2 {
   margin: 0;
   font-size: 1.5rem;
   color: #007bff;
 }
 
-ul li p {
+.thread-link p {
   margin: 5px 0;
   font-size: 0.9rem;
-  color: #555;
+  color: #aaa;
 }
 
 /* Post Details */
 .post-page {
   padding: 20px;
-  background: white;
+  background: #1f1f1f;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 .post-page h1 {
@@ -123,6 +174,7 @@ ul li p {
 .post-page p {
   font-size: 1rem;
   margin: 10px 0;
+  color: #e0e0e0;
 }
 
 .post-page ul {
@@ -130,19 +182,20 @@ ul li p {
 }
 
 .post-page ul li {
-  background-color: #f9f9f9;
+  background-color: #2a2a2a;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid #333;
+  color: #e0e0e0;
 }
 
 /* Footer */
 footer {
   text-align: center;
   padding: 1rem 0;
-  background-color: #007bff;
-  color: white;
+  background-color: #1f1f1f;
+  color: #e0e0e0;
   margin-top: 20px;
   font-size: 0.9rem;
 }
