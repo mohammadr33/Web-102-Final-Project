@@ -1,14 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { Link } from 'react-router-dom';
 
 function Home({ posts, setPosts, setSelectedPost }) {
+  const [sortOption, setSortOption] = useState('newest'); // State to track the selected sort option
+
   useEffect(() => {
     const fetchPosts = async () => {
-      const { data, error } = await supabase
-        .from('posts')
-        .select('*')
-        .order('time', { ascending: false });
+      let query = supabase.from('posts').select('*');
+
+      // Apply sorting based on the selected option
+      if (sortOption === 'newest') {
+        query = query.order('time', { ascending: false });
+      } else if (sortOption === 'popular') {
+        query = query.order('upvotes', { ascending: false });
+      }
+
+      const { data, error } = await query;
 
       if (error) {
         console.error('Error fetching posts:', error);
@@ -18,10 +26,24 @@ function Home({ posts, setPosts, setSelectedPost }) {
     };
 
     fetchPosts();
-  }, [setPosts]);
+  }, [setPosts, sortOption]); // Re-fetch posts when the sort option changes
 
   return (
     <div className="home-page">
+      <div className="sort-options">
+        <button
+          className={`sort-button ${sortOption === 'newest' ? 'active' : ''}`}
+          onClick={() => setSortOption('newest')}
+        >
+          Newest
+        </button>
+        <button
+          className={`sort-button ${sortOption === 'popular' ? 'active' : ''}`}
+          onClick={() => setSortOption('popular')}
+        >
+          Most Popular
+        </button>
+      </div>
       <ul className="thread-list">
         {posts.map((post) => (
           <li key={post.id} className="thread-item">

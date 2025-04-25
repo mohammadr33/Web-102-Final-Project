@@ -1,27 +1,58 @@
+import { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './PostPage.css';
 
-function PostPage({ post, setPosts, posts }) {
+function PostPage({ setPosts, posts }) {
   const navigate = useNavigate();
+  const { id } = useParams(); // Get the post ID from the URL
+  const [post, setPost] = useState(null); // Local state for the current post
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) {
+        console.error('Error fetching post:', error);
+      } else {
+        const postWithComments = { ...data, comments: data.comments || [] };
+        setPost(postWithComments); // Set the fetched post in local state
+      }
+    };
+
+    fetchPost();
+  }, [id]);
 
   const handleUpvote = async () => {
-    const { data, error } = await supabase
+    if (!post) return;
+
+    // Optimistically update the UI
+    const updatedPost = { ...post, upvotes: post.upvotes + 1 };
+    setPost(updatedPost);
+
+    const updatedPosts = posts.map((p) =>
+      p.id === post.id ? updatedPost : p
+    );
+    setPosts(updatedPosts);
+
+    // Update in Supabase
+    const { error } = await supabase
       .from('posts')
-      .update({ upvotes: post.upvotes + 1 })
+      .update({ upvotes: updatedPost.upvotes })
       .eq('id', post.id);
 
     if (error) {
       console.error('Error updating upvotes:', error);
-    } else {
-      const updatedPosts = posts.map((p) =>
-        p.id === post.id ? { ...p, upvotes: data[0].upvotes } : p
-      );
-      setPosts(updatedPosts);
     }
   };
 
   const handleDelete = async () => {
+    if (!post) return;
+
     const { error } = await supabase
       .from('posts')
       .delete()
@@ -37,24 +68,36 @@ function PostPage({ post, setPosts, posts }) {
 
   const handleComment = async (e) => {
     e.preventDefault();
+    if (!post) return;
+
     const comment = e.target.comment.value;
 
+    // Optimistically update the UI
     const updatedComments = [...post.comments, comment];
-    const { data, error } = await supabase
+    const updatedPost = { ...post, comments: updatedComments };
+    setPost(updatedPost);
+
+    const updatedPosts = posts.map((p) =>
+      p.id === post.id ? updatedPost : p
+    );
+    setPosts(updatedPosts);
+
+    // Update in Supabase
+    const { error } = await supabase
       .from('posts')
       .update({ comments: updatedComments })
       .eq('id', post.id);
 
     if (error) {
       console.error('Error adding comment:', error);
-    } else {
-      const updatedPosts = posts.map((p) =>
-        p.id === post.id ? { ...p, comments: data[0].comments } : p
-      );
-      setPosts(updatedPosts);
-      e.target.reset();
     }
+
+    e.target.reset(); // Clear the input field
   };
+
+  if (!post) {
+    return <p>Loading...</p>; // Show a loading message while fetching the post
+  }
 
   return (
     <div className="post-page">

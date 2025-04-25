@@ -199,3 +199,31 @@ footer {
   margin-top: 20px;
   font-size: 0.9rem;
 }
+
+/* Sort Options */
+.sort-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+}
+
+.sort-button {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sort-button:hover {
+  background-color: #333;
+}
+
+.sort-button.active {
+  background-color: #007bff;
+  color: white;
+}
