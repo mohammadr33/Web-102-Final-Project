@@ -1,0 +1,67 @@
+.post-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post-page button {
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.post-page button:hover {
+  background-color: #0056b3;
+}
+
+.post-page h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.post-page img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.post-page p {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.post-page form {
+  margin-top: 20px;
+}
+
+.post-page form input {
+  width: calc(100% - 100px);
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.post-page form button {
+  padding: 10px 20px;
+}
+
+.post-page ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.post-page ul li {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
