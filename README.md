@@ -1,4 +1,4 @@
-# Web Development Final Project - Soccer Forum
+![web102finalproject](https://github.com/user-attachments/assets/20722b90-6c90-4684-a744-9f0160fe7df0)# Web Development Final Project - Soccer Forum
 
 Submitted by: Mohammad Rahman
 
@@ -81,6 +81,9 @@ GIF created with LICEcap
 [peek](https://github.com/phw/peek) for Linux. -->
 
 ## Notes
+
+![Uplo;ading web102finalproject.gif…]()
+
 
 Describe any challenges encountered while building the app.
 
