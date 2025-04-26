@@ -4,7 +4,8 @@ import { supabase } from '../supabaseClient';
 
 function CreatePost() {
   const navigate = useNavigate();
-  const [imageUrl, setImageUrl] = useState(''); // State for the image URL
+  const [imageUrl, setImageUrl] = useState('');
+  const [referencedPostId, setReferencedPostId] = useState(''); // State for referenced post ID
 
   const handleCreatePost = async (e) => {
     e.preventDefault();
@@ -16,8 +17,9 @@ function CreatePost() {
       {
         title,
         content,
-        image: imageUrl, // Add the image URL to the post
-        time: new Date().toISOString(), // Store the current time in UTC
+        image: imageUrl,
+        referenced_post_id: referencedPostId || null, // Save the referenced post ID
+        time: new Date().toISOString(),
         upvotes: 0,
         comments: [],
       },
@@ -41,11 +43,15 @@ function CreatePost() {
           name="image"
           placeholder="Image URL"
           value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)} // Update the image URL state
+          onChange={(e) => setImageUrl(e.target.value)}
         />
-        {imageUrl && (
-          <img src={imageUrl} alt="Preview" className="image-preview" />
-        )}
+        {imageUrl && <img src={imageUrl} alt="Preview" className="image-preview" />}
+        <input
+          name="referencedPostId"
+          placeholder="Referenced Post ID (optional)"
+          value={referencedPostId}
+          onChange={(e) => setReferencedPostId(e.target.value)}
+        />
         <button type="submit">Create Post</button>
       </form>
     </div>

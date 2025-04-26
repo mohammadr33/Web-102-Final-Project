@@ -85,7 +85,7 @@ function EditPost({ setPosts, posts }) {
             placeholder="Enter image URL"
           />
           {imageUrl && (
-            <img src={imageUrl} alt="Preview" className="current-image" />
+            <img src={imageUrl} alt="Preview" className="image-preview" />
           )}
         </div>
         <button type="submit">Update Post</button>

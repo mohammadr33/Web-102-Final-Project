@@ -17,10 +17,26 @@ body {
   box-shadow: 0 0 20px rgba(180, 120, 255, 0.2);
 }
 
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px; /* Add spacing below the header */
+}
+
+.post-id {
+  font-size: 0.9rem;
+  color: #888;
+  padding: 5px 10px;
+  background-color: #1a1a1a;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-left: auto; /* Push the post ID to the far right */
+}
+
 .post-title {
   font-size: 2rem;
   color: #d1aaff;
-  margin-bottom: 20px;
 }
 
 .post-image {
@@ -70,7 +86,7 @@ button:hover {
 
 .back-button {
   background-color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .back-button:hover {
@@ -273,4 +289,40 @@ button:hover {
 
 .error-container button:hover {
   background-color: #0056b3;
+}
+
+.referenced-post {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.referenced-post h3 {
+  margin: 0 0 10px;
+  color: #d1aaff;
+}
+
+.referenced-post-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.referenced-post-link h4 {
+  margin: 0;
+  color: #007bff;
+}
+
+.referenced-post-link p {
+  margin: 5px 0 0;
+  color: #ccc;
+}
+
+.post-time {
+  font-size: 0.9rem;
+  color: #534b4b; /* Use a lighter color */
+  opacity: 0.99; /* Slightly reduce opacity */
+  margin-top: 10px;
+  font-weight: 200;
 }
