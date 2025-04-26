@@ -24,6 +24,17 @@ body {
   margin-bottom: 20px; /* Add spacing below the header */
 }
 
+.back-button {
+  margin-right: 10px; /* Add spacing between the back button and the post time */
+}
+
+.post-time {
+  font-size: 0.9rem;
+  color: #888; /* Use a lighter color */
+  opacity: 0.8; /* Slightly reduce opacity */
+  margin-right: auto; /* Push the post ID to the far right */
+}
+
 .post-id {
   font-size: 0.9rem;
   color: #888;
@@ -31,7 +42,6 @@ body {
   background-color: #1a1a1a;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-left: auto; /* Push the post ID to the far right */
 }
 
 .post-title {
@@ -317,12 +327,4 @@ button:hover {
 .referenced-post-link p {
   margin: 5px 0 0;
   color: #ccc;
-}
-
-.post-time {
-  font-size: 0.9rem;
-  color: #534b4b; /* Use a lighter color */
-  opacity: 0.99; /* Slightly reduce opacity */
-  margin-top: 10px;
-  font-weight: 200;
 }

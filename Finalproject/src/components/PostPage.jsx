@@ -108,6 +108,7 @@ function PostPage({ setPosts, posts }) {
         <button className="back-button" onClick={() => navigate('/')}>
           Back
         </button>
+        <p className="post-time">Posted on: {new Date(post.time).toLocaleString()}</p>
         <p className="post-id">Post ID: {id}</p>
       </div>
       <h1 className="post-title">{post.title}</h1>
@@ -115,7 +116,6 @@ function PostPage({ setPosts, posts }) {
         <img src={post.image} alt={post.title} className="post-image" />
       )}
       <p className="post-content">{post.content}</p>
-      <p className="post-time">Posted on: {new Date(post.time).toLocaleString()}</p>
 
       <div className="post-actions">
         <div className="action-buttons">
