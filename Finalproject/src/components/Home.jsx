@@ -3,13 +3,13 @@ import { supabase } from '../supabaseClient';
 import { Link } from 'react-router-dom';
 
 function Home({ posts, setPosts, setSelectedPost }) {
-  const [sortOption, setSortOption] = useState('newest'); // State to track the selected sort option
+  const [sortOption, setSortOption] = useState('newest');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchPosts = async () => {
       let query = supabase.from('posts').select('*');
 
-      // Apply sorting based on the selected option
       if (sortOption === 'newest') {
         query = query.order('time', { ascending: false });
       } else if (sortOption === 'popular') {
@@ -26,7 +26,11 @@ function Home({ posts, setPosts, setSelectedPost }) {
     };
 
     fetchPosts();
-  }, [setPosts, sortOption]); // Re-fetch posts when the sort option changes
+  }, [setPosts, sortOption]);
+
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="home-page">
@@ -44,8 +48,15 @@ function Home({ posts, setPosts, setSelectedPost }) {
           Most Popular
         </button>
       </div>
+      <input
+        type="text"
+        placeholder="Search posts by title"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="search-bar"
+      />
       <ul className="thread-list">
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <li key={post.id} className="thread-item">
             <Link
               to={`/post/${post.id}`}

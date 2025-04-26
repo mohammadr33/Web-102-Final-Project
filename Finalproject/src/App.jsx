@@ -4,6 +4,7 @@ import './App.css';
 import Home from './components/Home';
 import CreatePost from './components/CreatePost';
 import PostPage from './components/PostPage';
+import EditPost from './components/EditPost';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -36,6 +37,10 @@ function App() {
       posts={posts}
     />
   }
+/>
+<Route
+  path="/edit/:id"
+  element={<EditPost setPosts={setPosts} posts={posts} />}
 />
         </Routes>
       </div>

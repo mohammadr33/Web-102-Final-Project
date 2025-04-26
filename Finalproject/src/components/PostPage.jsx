@@ -8,6 +8,9 @@ function PostPage({ setPosts, posts }) {
   const { id } = useParams(); // Get the post ID from the URL
   const [post, setPost] = useState(null); // Local state for the current post
   const [error, setError] = useState(null); // Error state
+  const [isEditing, setIsEditing] = useState(false); // Edit mode state
+  const [editTitle, setEditTitle] = useState(''); // State for editing title
+  const [editContent, setEditContent] = useState(''); // State for editing content
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -30,6 +33,18 @@ function PostPage({ setPosts, posts }) {
 
     fetchPost();
   }, [id]);
+
+  const formatTimeNYC = (time) => {
+    const options = {
+      timeZone: 'America/New_York',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    };
+    return new Intl.DateTimeFormat('en-US', options).format(new Date(time));
+  };
 
   const handleUpvote = async () => {
     if (!post) return;
@@ -95,6 +110,10 @@ function PostPage({ setPosts, posts }) {
     e.target.reset();
   };
 
+  const handleEdit = () => {
+    navigate(`/edit/${id}`); // Redirect to the edit page
+  };
+
   if (error) return <p>{error}</p>;
 
   if (!post) return null; // Return nothing if the post is not yet loaded
@@ -104,16 +123,41 @@ function PostPage({ setPosts, posts }) {
       <button className="back-button" onClick={() => navigate('/')}>
         Back
       </button>
-      <h1 className="post-title">{post.title}</h1>
-      {post.image && (
-        <img src={post.image} alt={post.title} className="post-image" />
+      {isEditing ? (
+        <div className="edit-form">
+          <input
+            type="text"
+            value={editTitle}
+            onChange={(e) => setEditTitle(e.target.value)}
+            placeholder="Edit title"
+          />
+          <textarea
+            value={editContent}
+            onChange={(e) => setEditContent(e.target.value)}
+            placeholder="Edit content"
+          />
+          <button className="save-button" onClick={handleSaveEdit}>
+            Save
+          </button>
+        </div>
+      ) : (
+        <>
+          <h1 className="post-title">{post.title}</h1>
+          {post.image && (
+            <img src={post.image} alt={post.title} className="post-image" />
+          )}
+          <p className="post-content">{post.content}</p>
+          <p className="post-time">Posted on: {formatTimeNYC(post.time)}</p>
+        </>
       )}
-      <p className="post-content">{post.content}</p>
       <div className="post-actions">
         <div className="action-buttons">
           <p className="upvotes">Upvotes: {post.upvotes}</p>
           <button className="upvote-button" onClick={handleUpvote}>
             Upvote
+          </button>
+          <button className="edit-button" onClick={handleEdit}>
+            Edit Post
           </button>
           <button className="delete-button" onClick={handleDelete}>
             Delete Post
