@@ -1,4 +1,4 @@
-![web102finalproject](https://github.com/user-attachments/assets/20722b90-6c90-4684-a744-9f0160fe7df0)# Web Development Final Project - Soccer Forum
+# Web Development Final Project - Soccer Forum
 
 Submitted by: Mohammad Rahman
 
@@ -71,10 +71,11 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-![web102finalproject](https://github.com/user-attachments/assets/c5cf4180-9ff7-4fa6-984d-6ccf003a9e74)
+![web102finalproject](https://github.com/user-attachments/assets/a984a2a8-dd0e-4f88-b93d-0fd530935103)
+
 
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with LICEcap
+GIF created with ScreenToGif
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
