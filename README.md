@@ -70,6 +70,7 @@ The following **additional** features are implemented:
 Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 ![web102finalproject](https://github.com/user-attachments/assets/c5cf4180-9ff7-4fa6-984d-6ccf003a9e74)
 
 <!-- Replace this with whatever GIF tool you used! -->
