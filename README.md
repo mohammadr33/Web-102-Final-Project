@@ -83,8 +83,6 @@ GIF created with ScreenToGif
 
 ## Notes
 
-![Uplo;ading web102finalproject.gif…]()
-
 
 Describe any challenges encountered while building the app.
 
