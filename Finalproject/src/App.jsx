@@ -29,18 +29,14 @@ function App() {
             element={<CreatePost />}
           />
           <Route
-            path="/post/:id"
-            element={
-              selectedPost && (
-                <PostPage
-                  post={selectedPost}
-                  setSelectedPost={setSelectedPost}
-                  setPosts={setPosts}
-                  posts={posts}
-                />
-              )
-            }
-          />
+  path="/post/:id"
+  element={
+    <PostPage
+      setPosts={setPosts}
+      posts={posts}
+    />
+  }
+/>
         </Routes>
       </div>
     </Router>

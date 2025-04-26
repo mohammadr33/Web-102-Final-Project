@@ -7,6 +7,7 @@ function PostPage({ setPosts, posts }) {
   const navigate = useNavigate();
   const { id } = useParams(); // Get the post ID from the URL
   const [post, setPost] = useState(null); // Local state for the current post
+  const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -16,11 +17,14 @@ function PostPage({ setPosts, posts }) {
         .eq('id', id)
         .single();
 
-      if (error) {
-        console.error('Error fetching post:', error);
+      if (error || !data) {
+        console.error('Error fetching post:', error || 'No post found');
+        setError('Post not found.');
+        setPost(null);
       } else {
         const postWithComments = { ...data, comments: data.comments || [] };
-        setPost(postWithComments); // Set the fetched post in local state
+        setPost(postWithComments);
+        setError(null);
       }
     };
 
@@ -30,7 +34,6 @@ function PostPage({ setPosts, posts }) {
   const handleUpvote = async () => {
     if (!post) return;
 
-    // Optimistically update the UI
     const updatedPost = { ...post, upvotes: post.upvotes + 1 };
     setPost(updatedPost);
 
@@ -39,7 +42,6 @@ function PostPage({ setPosts, posts }) {
     );
     setPosts(updatedPosts);
 
-    // Update in Supabase
     const { error } = await supabase
       .from('posts')
       .update({ upvotes: updatedPost.upvotes })
@@ -72,7 +74,6 @@ function PostPage({ setPosts, posts }) {
 
     const comment = e.target.comment.value;
 
-    // Optimistically update the UI
     const updatedComments = [...post.comments, comment];
     const updatedPost = { ...post, comments: updatedComments };
     setPost(updatedPost);
@@ -82,7 +83,6 @@ function PostPage({ setPosts, posts }) {
     );
     setPosts(updatedPosts);
 
-    // Update in Supabase
     const { error } = await supabase
       .from('posts')
       .update({ comments: updatedComments })
@@ -92,12 +92,12 @@ function PostPage({ setPosts, posts }) {
       console.error('Error adding comment:', error);
     }
 
-    e.target.reset(); // Clear the input field
+    e.target.reset();
   };
 
-  if (!post) {
-    return <p>Loading...</p>; // Show a loading message while fetching the post
-  }
+  if (error) return <p>{error}</p>;
+
+  if (!post) return null; // Return nothing if the post is not yet loaded
 
   return (
     <div className="post-page">
@@ -105,7 +105,9 @@ function PostPage({ setPosts, posts }) {
         Back
       </button>
       <h1 className="post-title">{post.title}</h1>
-      {post.image && <img src={post.image} alt={post.title} className="post-image" />}
+      {post.image && (
+        <img src={post.image} alt={post.title} className="post-image" />
+      )}
       <p className="post-content">{post.content}</p>
       <div className="post-actions">
         <div className="action-buttons">
